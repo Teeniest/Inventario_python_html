@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Este archivo es el html base para todas las paginas web que vayamos a modificar-->
 <html>
   <head>
     <meta charset="utf-8" />
@@ -14,8 +15,9 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
-
-    <title>{% block title %}Home{% endblock %}</title>
+    <!--Para colocar las ordenes de codigo de python, es necesario escribir 
+        como se muestr:{% orden %} texto {%end orden%}-->
+    <title>{% block title %}Base{% endblock %}</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
