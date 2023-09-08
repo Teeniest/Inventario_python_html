@@ -22,11 +22,13 @@ def login():
                 flash('Contraseña incorrecta, vuelve a intentar.', category='error')
         else:
             flash('El usuario no existe',category='error')
-    return render_template("login.html", boolean=True)
+    return render_template("login.html", user=current_user)
 
 @auth.route("/log-out")
+@login_required
 def logout():
-    return redirect(url_for('views.home'))
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @auth.route("/sign-up", methods=['GET','POST'])
 def signup():
@@ -56,4 +58,4 @@ def signup():
             flash('Cuenta creada exitosamente', category='succes')
             return redirect(url_for('views.home'))
 
-    return render_template("sign_up.html")
+    return render_template("sign_up.html",user=current_user)

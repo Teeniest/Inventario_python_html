@@ -78,6 +78,7 @@
 
 {% block javascript %}
     <script type="text/javascript">
+      src=({ url_for('static', filename='index.js')})
       function deleteNote(noteId) {
   fetch("/delete-note", {
     method: "POST",
