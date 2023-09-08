@@ -35,7 +35,7 @@ def signup():
     #Añadiendo usuario a base de datos
     if request.method == 'POST':
         email = request.form.get('email')
-        first_name = request.form.get('primer nombre')
+        nombre = request.form.get('nombre')
         password = request.form.get('password')
         password2 = request.form.get('password2')
 
@@ -44,17 +44,15 @@ def signup():
             flash('El correo ya fue registrado',category='error')
         elif len(email)<4:
             flash('Correo es menor a 4 caracteres', category='error')
-        elif len(first_name)<2:
-            flash('Nombre debe ser mayor a 2 caracteres', category='error')
         elif password != password2:
             flash('Las contraseñas no coinciden', category='error')
         elif len(password)<8:
             flash('La contraseña es menor a 8 caracteres', category='error')
         else:
-            new_user = User(email=email, firstname=first_name, password=generate_password_hash(password, method='shas56'))
-            db.session_add(new_user)
+            new_user = User(email=email, firs_name=nombre, password=generate_password_hash(password, method='sha256'))
+            db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash('Cuenta creada exitosamente', category='succes')
             return redirect(url_for('views.home'))
 

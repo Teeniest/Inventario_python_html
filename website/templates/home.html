@@ -1,7 +1,8 @@
-{% extends "base.html" %} {% block title %} Home {% endblock %}
+{% extends "base.html" %} {% block title %} Notas {% endblock %}
 
 {% block content %}
-<h1 align="center">Notes</h1>
+<h1 align="center">Notas
+</h1>
 <ui class="list-group list-group-flush" id="notes">
     {% for note in user.notes%}
     <li class="list-group-item">
@@ -13,10 +14,10 @@
     {% endfor %}
 </ui>
 <form method="POST">
-    <textarea name="note" id="note" class="form-control">
-        <div align="center">
-            <button type="submit" class="btn btn-primary">Add Note</button>
-        </div>
-    </textarea>
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Agregar nota</button>
+    </div>
 </form>
 {% endblock %} 

@@ -1,7 +1,7 @@
-{% extends "base.html" %} {% block title %} Inciar sesión {% endblock %}
+{% extends "base.html" %} {% block title %} Iniciar sesión {% endblock %}
 
 {% block content %}
-<h1>Inciar sesion </h1>
+<h1>Iniciar sesion </h1>
 {{ cuenta }}
 
 
@@ -19,11 +19,13 @@
     <div class="form-group">
         <label form="password">Contraseña</label>
         <input
-        class="form-control" 
+        class="form-control" type="password"
         id="password" 
         name="password" 
         placeholder="Introduce tu contraseña"
         />
+        <input type="checkbox" onclick="pass_to_text('password')">Mostrar contraseña
+
     </div>
     <br />
     <button type="Enviar" class="btn btn-primary">Enviar</button>
