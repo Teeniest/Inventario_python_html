@@ -27,6 +27,6 @@ def delete_note():
     note = Note.query.get(noteId)
     if note:
         if note.user_id == current_user.id:
-        db.session.delete(note)
-        db.session.commit()
+            db.session.delete(note)
+            db.session.commit()
     return jsonify({})

@@ -1,16 +1,12 @@
-{% extends "base.html" %} {% block title %} Login {% endblock %}
+{% extends "base.html" %} {% block title %} Inciar sesión {% endblock %}
 
 {% block content %}
 <h1>Inciar sesion </h1>
 {{ cuenta }}
-{% if boolean==True%}
-Es verdadero
-{% else %}
-No es verdadero
-{% endif%}
+
 
 <form method="POST">
-    <h3 align="center">Iniciar sesión</h3>
+    
     <div class="form-group">
         <label form="email">Dirección de correo</label>
         <input

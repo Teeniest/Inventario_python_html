@@ -41,7 +41,7 @@ def signup():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            flash('El correo ya fue registrado','category='error')
+            flash('El correo ya fue registrado',category='error')
         elif len(email)<4:
             flash('Correo es menor a 4 caracteres', category='error')
         elif len(first_name)<2:
