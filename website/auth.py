@@ -24,7 +24,7 @@ def login():
             flash('El usuario no existe',category='error')
     return render_template("login.html", user=current_user)
 
-@auth.route("/log-out")
+@auth.route("/logout")
 @login_required
 def logout():
     logout_user()

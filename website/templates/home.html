@@ -1,23 +1,13 @@
-{% extends "base.html" %} {% block title %} Notas {% endblock %}
+{% extends "base.html" %} {% block title %} Menú principal {% endblock %}
 
 {% block content %}
-<h1 align="center">Notas
+<h1 align="center" >Menú principal
 </h1>
-<ui class="list-group list-group-flush" id="notes">
-    {% for note in user.notes%}
-    <li class="list-group-item">
-        {{ note.data }}
-        <button type="button" class="close" onCLick="deleteNote({{ note.id }})">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </li>
-    {% endfor %}
-</ui>
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Agregar nota</button>
-    </div>
-</form>
+<p > Bienvenido  <b style="color:#243762">{{ mostrar_user }}</b> </p> 
+<p> Aquí puedes realizar notas e inventarios que se almacenan en una base de datos, 
+    por lo que no debes preocuparte por la pérdida de tu información.
+</p>
+<p> Para acceder a estas características es necesario que selecciones en la parte 
+    superior a cual de estas deseas acceder.</p>
+
 {% endblock %} 

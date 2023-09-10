@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %} Inventario {% endblock %}
+
+{% block content %}
+<h1 align="center">Inventario
+</h1>
+<body> Que tal, en esta pagina web puedes realizar diversas operaciones:
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+}
+    </style>
+    <table align="center">
+        <tr style=background-color:#ffc4e0>
+          <th>Cantidad</th>
+          <th>Objeto</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+        </tr>
+        <tr style=background-color:#243762>
+          <td style="color: aliceblue;">1</td>
+          <td style="color: aliceblue;">carne</td>
+          <td style="color: aliceblue;">De cerdo</td>
+          <td style="color: aliceblue;">$50</td>
+        </tr>
+      </table> 
+{% endblock %} 
