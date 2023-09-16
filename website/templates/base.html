@@ -35,14 +35,12 @@
           {% if user.is_authenticated %}
           <a class="nav-item nav-link" id="notas" href="/notas">Notas</a>
           <a class="nav-item nav-link" id="inventario" href="/inventario">Inventario</a>
-          <a class="nav-item nav-link" id="logout" href="/auth/logout">Cerrar sesión</a>
           <a class="nav-item nav-link" id="alimentacion" href="/alimentacion">Alimentación</a>
+          <a class="nav-item nav-link" id="logout" href="/auth/logout">Cerrar sesión</a>
           {% else %}
           <a class="nav-item nav-link" id="home" href="/">Menú principal</a>
           <a class="nav-item nav-link" id="login" href="/auth/login">Iniciar sesión</a>
-          <a class="nav-item nav-link" id="signUp" href="/auth/sign-up">Crear cuenta</a>
-          
-          
+          <a class="nav-item nav-link" id="signUp" href="/auth/sign-up">Crear cuenta</a>          
           {% endif %}
         </div>
       </div>

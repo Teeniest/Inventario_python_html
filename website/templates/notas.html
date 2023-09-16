@@ -1,20 +1,21 @@
 {% extends "base.html" %} {% block title %} Notas {% endblock %}
 
 {% block content %}
+<hr style="height: 1px;border: 0">
 <h1 align="center" style="color: #0070ff;">Notas
 </h1>
 <ui class="list-group list-group-flush" id="notes">
     {% for note in user.notes%}
-    <li class="list-group-item">
+    <li class="list-group-item" style="background-color: black; color: white;">
         {{ note.data }}
-        <button type="button" class="close" onCLick="deleteNote({{ note.id }})">
+        <button type="button" class="close" style="color: red;" class="btn btn-danger btn-sm" onCLick="deleteNote({{ note.id }})">
             <span aria-hidden="true">&times;</span>
         </button>
     </li>
     {% endfor %}
 </ui>
 <form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
+    <textarea name="note" id="note" class="form-control" style="background-color: black;"></textarea>
     <br />
     <div align="center">
         <button type="submit" class="btn btn-default"

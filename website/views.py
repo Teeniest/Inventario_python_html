@@ -80,3 +80,7 @@ def borrar_prod():
             db.session.delete(prod)
             db.session.commit()
     return jsonify({})
+
+@views.route('/alimentacion')
+def alimentacion():
+    return render_template("alimentacion.html",user=current_user)
