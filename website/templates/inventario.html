@@ -1,47 +1,64 @@
 {% extends "base.html" %} {% block title %} Inventario {% endblock %}
 
 {% block content %}
-<h1 align="center">Inventario</h1>
+<hr style="height: 1px;border: 0">
+<h1 align="center" style="color: #0070FF;">Inventario</h1>
 
-</style>
-<table align="center" style="width: 100%;">
-  <tr>
-      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Id</th>
-      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Cantidad</th>
-      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Objeto</th>
-      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Descripción</th>
-      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Precio anterior</th>
-      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Precio mínimo</th>
-      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Caducidad</th>
-      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Categoría</th>
+<hr style="height: 1px;border: 0">
+<label style="color: white;">Ingresa un valor para buscar: </label>  
+
+  <input
+  style="background-color: black; color: white;"
+  id="inventario_buscar" 
+  name="inventario_buscar" 
+  placeholder="Todos"
+  />
+  
+  <button id="btn_buscar_inventario" type="submit" onclick="buscar_tabla()" class="btn btn-default"
+  style="color: white;background-color: black; border-color: #0070ff;border-radius: 12px" 
+  >Buscar</button>
+  <button id="btn_borrar_ph" type="submit"onclick="borrar_ph();buscar_tabla()" class="btn btn-default"
+  style="color: white;background-color: black; border-color: #0070ff;border-radius: 12px"
+  >Limpiar busqueda</button>
+
+<hr style="height: 0.1px;border: 0">
+<table id="inventario_productos" align="center" style="width: 100%;">
+    <tr id="encabezado">
+      <th style="text-align: center;border: 1px solid white;border-collapse:collapse;color: white;">Id</th>
+      <th style="text-align: center;border: 1px solid white;border-collapse:collapse;color: white;">Cantidad</th>
+      <th style="text-align: center;border: 1px solid white;border-collapse:collapse;color: white;" onclick="sortTable(2)">Objeto</th>
+      <th style="text-align: center;border: 1px solid white;border-collapse:collapse;color: white;">Descripción</th>
+      <th style="text-align: center;border: 1px solid white;border-collapse:collapse;color: white;">Precio anterior</th>
+      <th style="text-align: center;border: 1px solid white;border-collapse:collapse;color: white;">Precio mínimo</th>
+      <th style="text-align: center;border: 1px solid white;border-collapse:collapse;color: white;" onclick="sortTable(6)">Caducidad</th>
+      <th onclick="sortTable(7)" style="text-align: center;border: 1px solid white;border-collapse:collapse;color: white;" >Categoría</th>
       <th style="border: 0cap;"></th>
   </tr>
-  
         {% for prod in user.productos %}
-        <tr style=background-color:#243762>
-          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.id }}</td>
-          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.cantidad }}</td>
-          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.nombre }}</td>
-          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.descripcion }}</td>
-          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.precio_anterior }}</td>
-          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.precio_minimo }}</td>
-          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.caducidad }}</td>
-          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.categoria }}</td>
-          <td style="border: white;background-color: white;">
-            <button type="button" class="close" onCLick="borrarProd({{ prod.id }})">
+        <tr id="tr" style="background-color: #171717;">
+          <td id="td" style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.id }}</td>
+          <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.cantidad }}</td>
+          <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.nombre }}</td>
+          <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.descripcion }}</td>
+          <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.precio_anterior }}</td>
+          <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.precio_minimo }}</td>
+          <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.caducidad }}</td>
+          <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.categoria }}</td>
+          <td style="border: white;background-color: black;">
+            <button type="button" class="btn btn-danger btn-sm" title="Eliminar" onCLick="borrarProd({{ prod.id }})">
             <span aria-hidden="true">&times;</span>
           </button>
           </td>
         {% endfor %}
         </tr>
 </table> 
-</h1>      
-  <hr style="height: 1px;">
+     
+  <hr style="height: 1px;border: 0"></hr>
       <form method="POST" id="form" style="display: none;">
-    
         <div class="form-group">
-            <label form="inventario_cantidad"> Cantidad</label>
+            <label form="inventario_cantidad" style="color: white;"> Cantidad</label>
             <input
+            style="background-color: black;"
             class="form-control" 
             id="inventario_cantidad" 
             name="inventario_cantidad" 
@@ -49,8 +66,9 @@
             />
         </div>
         <div class="form-group">
-            <label form="inventario_nombre">Nombre</label>
+            <label form="inventario_nombre" style="color: white;">Nombre</label>
             <input
+            style="background-color: black;"
             class="form-control" 
             id="inventario_nombre" 
             name="inventario_nombre" 
@@ -58,8 +76,9 @@
             />
         </div>
         <div class="form-group">
-            <label form="inventario_descripcion">Descripción</label>
+            <label form="inventario_descripcion" style="color: white;">Descripción</label>
             <input
+            style="background-color: black;"
             class="form-control" 
             id="inventario_descripcion" 
             name="inventario_descripcion" 
@@ -67,8 +86,9 @@
             />
         </div>
         <div class="form-group">
-            <label form="inventario_p_anterior">Precio anterior</label>
+            <label form="inventario_p_anterior" style="color: white;">Precio anterior</label>
             <input
+            style="background-color: black;"
             class="form-control" 
             id="inventario_p_anterior" 
             name="inventario_p_anterior" 
@@ -76,8 +96,9 @@
             />
         </div>
         <div class="form-group">
-          <label form="inventario_p_minimo">Precio mínimo</label>
+          <label form="inventario_p_minimo"style="color: white;">Precio mínimo</label>
           <input
+          style="background-color: black;"
           class="form-control" 
           id="inventario_p_minimo" 
           name="inventario_p_minimo" 
@@ -85,8 +106,9 @@
           />
       </div>
       <div class="form-group">
-            <label form="inventario_fechacad">Caducidad</label>
+            <label form="inventario_fechacad"style="color: white;">Caducidad</label>
             <input
+            style="background-color: black;"
             class="form-control" 
             id="inventario_fechacad" 
             name="inventario_fechacad" 
@@ -94,8 +116,9 @@
             />
         </div>
         <div class="form-group">
-          <label form="inventario_cat">Categoría</label>
+          <label form="inventario_cat"style="color: white;">Categoría</label>
           <input
+          style="background-color: black;"
           class="form-control" 
           id="inventario_cat" 
           name="inventario_cat" 
@@ -103,13 +126,21 @@
           />
       </div>
         <br />
-        <button type="submit" class="btn btn-primary">Agregar</button>
+        <button type="submit" class="btn btn-default"
+        style="color: white;background-color: black; border-color: #0070ff;border-radius: 12px"  
+        >Agregar</button>
     </form>
-  </hr>
+    <hr style="height: 0.005cm; border: 0;"></hr>
 
-    <button id="btn">Agregar un nuevo producto</button>
+    <button id="btn" title="Menú para agregar un nuevo producto"class="btn btn-default"
+    style="color: white;background-color: black; border-color: #0070ff;border-radius: 12px"  
+    >Nuevo producto</button>
 
-  <hr style="height: 1px;">ajjsjasdasdasds
-  </hr>
-  <hr style="height: 1px;"></hr>
+    <hr style="height: 0.005cm; border: 0;"></hr>
+    <label style="height: 1px;border: 0; color: #0070ff;">invl - Inventario en línea. 2023-2024.
+    </label>
+    <label style="color: #7fff00;">Creado por Janis &#9825; y Axl.</label>
+    <hr style="height: 0.005cm;border: 0"></hr>
+  
+    
 {% endblock %} 

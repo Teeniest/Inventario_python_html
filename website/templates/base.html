@@ -19,7 +19,7 @@
     <!--Para colocar las ordenes de codigo de python, es necesario escribir como se muestra:-->
     <title>{% block title %}Base{% endblock %}</title>
   </head>
-  <body>
+  <body style="background-color: #000000;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <button
         class="navbar-toggler"
@@ -121,13 +121,97 @@
   btn.addEventListener('click', () => {
   const form = document.getElementById('form');
   if (form.style.display === 'none') {
+    btn.textContent = 'Cerrar'
     form.style.display = 'block';
   } else {
+    btn.textContent = 'Nuevo producto'
     form.style.display = 'none';
   }
-});
-
+  });
   </script>
+
+  <script>
+    function buscar_tabla() {
+        var input, filter, found, table, tr, td, i, j;
+        input = document.getElementById("inventario_buscar");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("inventario_productos");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tr[i].style.display = "";
+                found = false;
+            } 
+            else {
+              if(tr[i].id != 'encabezado'){
+                tr[i].style.display = "none";}
+            }
+        }
+    }
+    </script>
+    <script>
+      //Añade la capacidad de activar el boton "buscar inventario" mediante la tecla "Enter"
+      var input = document.getElementById("inventario_buscar");
+      input.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("btn_buscar_inventario").click();
+      }
+      }); 
+    </script>
+    <script>
+      function borrar_ph(){
+        document.getElementById('inventario_buscar').value = "";      
+      }
+ 
+    </script>
+    
+    <script>
+      function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("inventario_productos");
+        switching = true;
+        dir = "asc"; 
+        while (switching) {
+          switching = false;
+          rows = table.rows;
+          for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[n];
+            y = rows[i + 1].getElementsByTagName("td")[n];
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch= true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;      
+          } else {
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+      }
+      </script>
 {% endblock %}
+<hr style="height: 1px;border: 0"></hr>  
+
   </body>
 </html>
