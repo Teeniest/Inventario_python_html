@@ -1,14 +1,13 @@
 {% extends "base.html" %} {% block title %} Crear cuenta {% endblock %}
 
 {% block content %}
-<h1>
-    Crear cuenta
-</h1>
+<h1 style="color: #0070ff;">Crear cuenta</h1>
 <form method="POST">
     
     <div class="form-group">
-        <label form="email"> Dirección de correo</label>
+        <label form="email" style="color: white;"> Dirección de correo</label>
         <input
+        style="background-color: black;"
         class="form-control" 
         id="email" 
         name="email" 
@@ -16,8 +15,9 @@
         />
     </div>
     <div class="form-group">
-        <label form="nombre">Nombre de usuario</label>
+        <label form="nombre"style="color: white;">Nombre de usuario</label>
         <input
+        style="background-color: black;"
         class="form-control" 
         id="nombre" 
         name="nombre" 
@@ -25,29 +25,37 @@
         />
     </div>
     <div class="form-group">
-        <label form="password">Contraseña (al menos 8 caracteres)</label>
+        <label form="password" style="color: white;">Contraseña (al menos 8 caracteres)</label>
         <input
+        style="background-color: black;"
         type="password"
         class="form-control" 
         id="password" 
         name="password" 
         placeholder="Introduce tu contraseña"
         />
-        <input type="checkbox" onclick="pass_to_text('password')">Mostrar contraseña
+        <input type="checkbox" onclick="pass_to_text('password')"><label style="color: white;">Mostrar contraseña</label>
     </div>
     <div class="form-group">
-        <label form="password2">Repite tu contraseña</label>
+        <label form="password2" style="color: white;">Repite tu contraseña</label>
         <input
+        style="background-color: black;"
         type="password"
         class="form-control" 
         id="password2" 
         name="password2" 
         placeholder="Vuelve a introducir tu contraseña"
         />
-        <input type="checkbox" onclick="pass_to_text('password2')">Mostrar contraseña
+        <input type="checkbox" onclick="pass_to_text('password2')"><label style="color: white;">Mostrar contraseña</label>
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" class="btn btn-primary"class="btn btn-default"
+    style="color: white;background-color: black; border-color: #0070ff;border-radius: 12px" 
+    >Enviar</button>
 </form>
-
+<div style="position: relative;background-color: black; width: 600px; height: 100px;">    
+    <div style="position: absolute; bottom: 0px; left: 20px; color: #0070ff">
+        invl - Inventario en línea. 2023-2024. <label style="color: #7fff00;">Creado por Janis &#9825; y Axl.</label>
+    </div>
+  </div>
 {% endblock %} 

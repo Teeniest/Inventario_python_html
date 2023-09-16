@@ -1,14 +1,16 @@
 {% extends "base.html" %} {% block title %} Iniciar sesión {% endblock %}
 
 {% block content %}
-<h1>Iniciar sesion </h1>
+<hr style="height: 1px;border: 0">
+<h1 style="color: #0070ff;">Iniciar sesion </h1>
 {{ cuenta }}
 
 <form method="POST">
     
     <div class="form-group">
-        <label form="email">Dirección de correo</label>
+        <label form="email" style="color: white">Dirección de correo</label>
         <input
+        style="background-color: black;"
         class="form-control" 
         id="email" 
         name="email" 
@@ -16,19 +18,27 @@
         />
     </div>
     <div class="form-group">
-        <label form="password">Contraseña</label>
+        <label form="password" style="color: white;">Contraseña</label>
         <input
+        style="background-color: black;"
         class="form-control" type="password"
         id="password" 
         name="password" 
         placeholder="Introduce tu contraseña"
         />
-        <input type="checkbox" onclick="pass_to_text('password')">Mostrar contraseña
+        <input type="checkbox" onclick="pass_to_text('password')"><label style="color: white;">Mostrar contraseña</label>
 
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" class="btn btn-default"
+    style="color: white;background-color: black; border-color: #0070ff;border-radius: 12px" 
+    >Enviar</button>
     
 </form>
+<div style="position: relative;background-color: black; width: 600px; height: 180px;">    
+    <div style="position: absolute; bottom: 0px; left: 20px; color: #0070ff">
+        invl - Inventario en línea. 2023-2024. <label style="color: #7fff00;">Creado por Janis &#9825; y Axl.</label>
+    </div>
+  </div>
 
 {% endblock %} 
