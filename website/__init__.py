@@ -18,11 +18,11 @@ def create_app():
     app.register_blueprint(views, url_prefix=('/'))
     app.register_blueprint(auth, url_prefix=('/auth/')) 
 
-    from .models import User, Note
+    from .models import User, Productos, Note
 
     with app.app_context():
-        db.create_all()
-
+       db.create_all()
+       
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
@@ -36,4 +36,4 @@ def create_app():
 def create_database(app):
     if not path.exists('website/' + DB_NAME):
         db.create_all(app=app)
-        print("Base da datos creada correctamente")
+        print("Base de datos creada correctamente")

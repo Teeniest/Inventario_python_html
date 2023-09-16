@@ -1,33 +1,115 @@
 {% extends "base.html" %} {% block title %} Inventario {% endblock %}
 
 {% block content %}
-<h1 align="center">Inventario
-</h1>
-<body> Que tal, en esta pagina web puedes realizar diversas operaciones:
-    <style>
-        table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-}
-    </style>
-    <table align="center" style="width: 100%;">
-        <tr style=background-color:#ffc4e0>
-          <th style="text-align: center;">Cantidad</th>
-          <th style="text-align: center;">Objeto</th>
-          <th style="text-align: center;">Descripción</th>
-          <th style="text-align: center;">Precio anterior</th>
-          <th style="text-align: center;">Precio actual</th>
-          <th style="text-align: center;">Fecha-Caducidad</th>
-          <th style="text-align: center;">Categoría</th>
-        </tr>
+<h1 align="center">Inventario</h1>
+
+</style>
+<table align="center" style="width: 100%;">
+  <tr>
+      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Id</th>
+      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Cantidad</th>
+      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Objeto</th>
+      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Descripción</th>
+      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Precio anterior</th>
+      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Precio mínimo</th>
+      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Caducidad</th>
+      <th style="text-align: center;border: 1px solid black;border-collapse:collapse">Categoría</th>
+      <th style="border: 0cap;"></th>
+  </tr>
+  
+        {% for prod in user.productos %}
         <tr style=background-color:#243762>
-          <td style="color: aliceblue;">1</td>
-          <td style="color: aliceblue;">carne</td>
-          <td style="color: aliceblue;">De cerdo</td>
-          <td style="color: aliceblue;text-align: center;">$50</td>
-          <td style="color: aliceblue;text-align: center;">$60</td>
-          <td style="color: aliceblue;text-align: center;">DIC/2025</td>
-          <td style="color: aliceblue;text-align: center;">Comida</td>
+          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.id }}</td>
+          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.cantidad }}</td>
+          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.nombre }}</td>
+          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.descripcion }}</td>
+          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.precio_anterior }}</td>
+          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.precio_minimo }}</td>
+          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.caducidad }}</td>
+          <td style="color: aliceblue;border: 1px solid black;border-collapse:collapse">{{ prod.categoria }}</td>
+          <td style="border: white;background-color: white;">
+            <button type="button" class="close" onCLick="borrarProd({{ prod.id }})">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </td>
+        {% endfor %}
         </tr>
-      </table> 
+</table> 
+</h1>      
+  <hr style="height: 1px;">
+      <form method="POST" id="form" style="display: none;">
+    
+        <div class="form-group">
+            <label form="inventario_cantidad"> Cantidad</label>
+            <input
+            class="form-control" 
+            id="inventario_cantidad" 
+            name="inventario_cantidad" 
+            placeholder="Introduce una cantidad entera"
+            />
+        </div>
+        <div class="form-group">
+            <label form="inventario_nombre">Nombre</label>
+            <input
+            class="form-control" 
+            id="inventario_nombre" 
+            name="inventario_nombre" 
+            placeholder="Introduce el nombre"
+            />
+        </div>
+        <div class="form-group">
+            <label form="inventario_descripcion">Descripción</label>
+            <input
+            class="form-control" 
+            id="inventario_descripcion" 
+            name="inventario_descripcion" 
+            placeholder="Introduce la descripción"
+            />
+        </div>
+        <div class="form-group">
+            <label form="inventario_p_anterior">Precio anterior</label>
+            <input
+            class="form-control" 
+            id="inventario_p_anterior" 
+            name="inventario_p_anterior" 
+            placeholder="Introduce el precio con punto decimal"
+            />
+        </div>
+        <div class="form-group">
+          <label form="inventario_p_minimo">Precio mínimo</label>
+          <input
+          class="form-control" 
+          id="inventario_p_minimo" 
+          name="inventario_p_minimo" 
+          placeholder="Introduce el precio con punto decimal"
+          />
+      </div>
+      <div class="form-group">
+            <label form="inventario_fechacad">Caducidad</label>
+            <input
+            class="form-control" 
+            id="inventario_fechacad" 
+            name="inventario_fechacad" 
+            placeholder="Introduce la fecha, recomendamos: 'MES/AÑO'"
+            />
+        </div>
+        <div class="form-group">
+          <label form="inventario_cat">Categoría</label>
+          <input
+          class="form-control" 
+          id="inventario_cat" 
+          name="inventario_cat" 
+          placeholder="Introduce la categoría"
+          />
+      </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+  </hr>
+
+    <button id="btn">Agregar un nuevo producto</button>
+
+  <hr style="height: 1px;">ajjsjasdasdasds
+  </hr>
+  <hr style="height: 1px;"></hr>
 {% endblock %} 
