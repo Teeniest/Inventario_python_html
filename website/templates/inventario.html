@@ -45,7 +45,10 @@
           <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.caducidad }}</td>
           <td style="color: aliceblue;border: 1px solid white;border-collapse:collapse">{{ prod.categoria }}</td>
           <td style="border: white;background-color: black;">
+            <button type="button" class="btn btn-outline-primary btn-sm" title="Editar" onCLick="Hola" style="color: white;"
+            onclick="editar_td()" >Editar 
             <button type="button" class="btn btn-danger btn-sm" title="Eliminar" onCLick="borrarProd({{ prod.id }})">
+             
             <span aria-hidden="true">&times;</span>
           </button>
           </td>
